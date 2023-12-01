@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Ingredient</title>
+    <!-- Add Materialize CSS link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+    {% include 'admin_nav.html' %}
+    <div class="container">
+        <h2 class="center-align">Add Ingredient</h2>
+        <form method="post" class="col s12">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="row">
+                <div class="input-field col s12">
+                    <button class="btn waves-effect waves-light" type="submit">Add Ingredient</button>
+                    <button class="btn waves-effect waves-light" type="reset">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Initialize Materialize JavaScript components -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

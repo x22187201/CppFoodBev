@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- Add Materialize CSS and JavaScript links -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Add custom CSS to style your page -->
+    <style>
+        body {
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #00796b; /* Teal color */
+        }
+        h2 {
+            font-size: 2em;
+            margin-top: 20px;
+            color: #455a64; /* Blue Grey color */
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .btn-container a {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to FBM</h1>
+
+        <h2>User Section</h2>
+        <div class="btn-container">
+            <a href="{% url 'user_register' %}" class="waves-effect waves-light btn-large teal">User Register</a>
+            <a href="{% url 'user_login' %}" class="waves-effect waves-light btn-large teal darken-2">User Login</a>
+        </div>
+
+        <!-- Add a separate section for admin registration and login -->
+        <h2>Admin Section</h2>
+        <div class="btn-container">
+            <a href="{% url 'admin_register' %}" class="waves-effect waves-light btn-large blue-grey">Admin Register</a>
+            <a href="{% url 'admin_login' %}" class="waves-effect waves-light btn-large blue-grey darken-2">Admin Login</a>
+        </div>
+    </div>
+
+    <!-- Initialize Materialize JavaScript components -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            M.AutoInit();
+        });
+    </script>
+</body>
+</html>

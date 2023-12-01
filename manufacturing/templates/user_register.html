@@ -1,0 +1,78 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+</head>
+<body>
+    <h2>User Register</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+
+
+<body>
+
+    
+
+<div class="flex flex-col justify-center items-center min-h-screen">
+    <h1 class="font-bold text-lg">Register</h1>
+
+    <form class="shadow-lg p-10" method="POST">
+        {% csrf_token %}
+        <div class="mb-2">
+            <label for="">Username</label>
+            <div class="border rounded py-2 px-2 mr-10">
+                {{ form.username}}
+            </div>
+        </div>
+        <div class="mb-2">
+            <label for="">Email</label>
+            <div class="border rounded py-2 px-2 mr-10">
+                {{ form.email}}
+            </div>
+        </div>
+        <div class="mb-2">
+            <label for="">U Name</label>
+            <div class="border rounded py-2 px-2 mr-10">
+                {{ form.u_name}}
+            </div>
+        </div>
+        <div class="mb-2">
+            <label for="">Phone number</label>
+            <div class="border rounded py-2 px-2 mr-10">
+                {{ form.phone_number}}
+            </div>
+        </div>
+        <div class="mb-2">
+            <label for="">Password</label>
+            <div class="border rounded py-2 px-2 mr-10">
+                {{ form.password1}}
+            </div>
+        </div>
+        <div class="mb-2">
+            <label for="">Confirm Password</label>
+            <div class="border rounded py-2 px-2 mr-10">
+                {{ form.password2}}
+            </div>
+        </div>
+        <button class="bg-blue-500 text-white px-4 py-2" type="submit">Register </button>
+        <p class="m-10">Already registered? <span> <a class="text-indigo-500" href="{% url 'user_login'%}">Click here</a> to login</p></span>
+
+    </form>
+</div>
+</body>
+</html>
+
+   
+
+
+
+
+

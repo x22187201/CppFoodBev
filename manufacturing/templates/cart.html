@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+
+{% block title %}Cart{% endblock %}
+
+{% block content %}
+    <h1 class="center-align">Cart</h1>
+
+    {% if user.is_authenticated %}
+        <div class="cart-items">
+            <div class="row">
+                <!-- Display a list of items in the cart -->
+                {% for item in cart_items %}
+                    <div class="col s12 m6 l4">
+                        <div class="card product-card">
+                            <div class="card-content">
+                                <span class="card-title">{{ item.name }}</span>
+                                <p>Price: ${{ item.unit_price }}</p>
+                            </div>
+                            <div class="card-action">
+                                <button class="waves-effect waves-light btn remove-to-cart-button" data-product-id="{{ item.id }}">Remove from Cart</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                {% endfor %}
+            </div>
+              <!-- Form for delivery information -->
+              <form id="delivery-info-form">
+                {% csrf_token %}
+                <div class="input-field">
+                    <input id="id_delivery_address" type="text" name="delivery_address">
+                    <label for="id_delivery_address">Delivery Address</label>
+                </div>
+                <div class="input-field">
+                    <input id="id_pincode" type="text" name="pincode">
+                    <label for="id_pincode">Pincode</label>
+                </div>
+                <div class="input-field">
+                    <input id="id_country" type="text" name="country">
+                    <label for="id_country">Country</label>
+                </div>
+                <!-- <div>
+                    {% for item in cart.products.all %}
+                    {{ item.product.name }} - {{ item.product.unit_price }}<br>
+                  {% endfor %}
+                  <p>Total Price: ${{ total_price }}</p>
+                </div> -->
+                <button class="waves-effect waves-light btn" onclick="placeOrder()">Place Order</button>
+            </form>
+        </div>
+    {% else %}
+        <p class="center-align">Please log in to view your cart.</p>
+    {% endif %}
+</div>
+
+<script>
+    const removeButtons = document.querySelectorAll('.remove-to-cart-button');
+    removeButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const productId = this.getAttribute('data-product-id');
+            removeFromCart(productId);
+        });
+    });
+
+    function removeFromCart(productId) {
+        // Send an AJAX request to your server to remove the product from the cart
+        fetch(`/remove_from_cart/${productId}/`, {
+            method: 'POST', // You can use 'DELETE' or 'POST' based on your view implementation
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': "{{ csrf_token }}",
+            },
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Product removed from the cart');
+                window.location.reload();
+
+                // You can update the cart view or take other actions as needed
+            } else {
+                alert('Failed to remove the product from the cart');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+   
+//     function placeOrder() {
+//     console.log("called");
+//     // Extract delivery information from the form
+//     const deliveryAddress = document.getElementById('id_delivery_address').value;
+//     const pincode = document.getElementById('id_pincode').value;
+//     const country = document.getElementById('id_country').value;
+
+//     // Send an AJAX request to retrieve the cart items
+//     fetch('/get_cart_items/', {
+//         method: 'GET',
+//         headers: {
+//             'Accept': 'application/json',
+//             'X-CSRFToken': "{{ csrf_token }}",
+//         },
+//     })
+//     .then(response => response.json())
+//     .then(cartItems => {
+//         // Prepare the order data, including user, cart products, and delivery information
+//         const orderData = {
+//             user: "{{ user.id }}",  // You may need to adjust this depending on your user model
+//             delivery_address: deliveryAddress,
+//             pincode: pincode,
+//             country: country,
+//             products: cartItems,  // Include the retrieved cart items
+//         };
+//         console.log('***********');
+//         console.log(orderData);
+//         // Send an AJAX request to place the order
+//         return fetch('/place_order/', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 'X-CSRFToken': "{{ csrf_token }}",
+//             },
+//             body: JSON.stringify(orderData),
+//         });
+//     })
+//     .then(response => {
+//         if (response.ok) {
+//             alert('Order placed successfully');
+//                } else {
+//             alert('Order placement failed');
+//         }
+//     })
+//     .catch(error => {
+//         console.error('Error:', error);
+//     });
+// }
+
+function placeOrder() {
+    console.log("called");
+    // Extract delivery information from the form
+    const deliveryAddress = document.getElementById('id_delivery_address').value;
+    const pincode = document.getElementById('id_pincode').value;
+    const country = document.getElementById('id_country').value;
+
+    // Send an AJAX request to retrieve the cart items
+    fetch('/get_cart_items/', {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'X-CSRFToken': "{{ csrf_token }}",
+        },
+    })
+    .then(response => response.json())
+    .then(cartItems => {
+        // Prepare the order data, including user, cart products, and delivery information
+        const orderData = {
+            user: "{{ user.id }}",  // You may need to adjust this depending on your user model
+            delivery_address: deliveryAddress,
+            pincode: pincode,
+            country: country,
+            products: cartItems,  // Include the retrieved cart items
+        };
+        console.log('***********');
+        console.log(orderData);
+        
+        // Send an AJAX request to place the order
+        return fetch('/place_order/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': "{{ csrf_token }}",
+            },
+            body: JSON.stringify(orderData),
+        });
+    })
+    .then(response => {
+        if (response.ok) {
+            alert('Order placed successfully');
+            window.location.reload();
+        } else {
+            alert('Order placement failed');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+</script>
+{% endblock %}

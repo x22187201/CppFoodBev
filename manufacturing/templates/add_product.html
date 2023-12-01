@@ -1,0 +1,83 @@
+<!-- add_product.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <!-- Add Materialize CSS link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+    {% include 'admin_nav.html' %}
+    <div class="container">
+        <h2 class="center-align">Add Product</h2>
+        <form method="post" class="col s12" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="input-field col s12">
+                    {{ form.name }}
+                    <label for="{{ form.name.id_for_label }}">Product Name</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    {{ form.description }}
+                    <label for="{{ form.description.id_for_label }}">Description</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    {{ form.manufacturing_date }}
+                    <label for="{{ form.manufacturing_date.id_for_label }}">Manufacturing Date</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    {{ form.expiration_date }}
+                    <label for="{{ form.expiration_date.id_for_label }}">Expiration Date</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    {{ form.batch_number }}
+                    <label for="{{ form.batch_number.id_for_label }}">Batch Number</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    {{ form.quantity }}
+                    <label for="{{ form.quantity.id_for_label }}">Quantity</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    {{ form.unit_price }}
+                    <label for="{{ form.unit_price.id_for_label }}">Unit Price</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="file-field input-field col s12">
+                    <div class="btn">
+                        <span>Upload Image</span>
+                        {{ form.product_image }}
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <button class="btn waves-effect waves-light" type="submit">Add Product</button>
+                    <button class="btn waves-effect waves-light" type="reset">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Initialize Materialize JavaScript components -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

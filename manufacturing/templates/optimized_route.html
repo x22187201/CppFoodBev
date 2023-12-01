@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Add any necessary meta tags, stylesheets, or other head elements -->
+    <title>Optimized Route</title>
+    <!-- Include the Google Maps API with your API key -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJEGAeKc_U4sgA0K3a86brTATczFx_rpQ&callback=initMap" async defer></script>
+</head>
+<body>
+    {% include 'admin_nav.html' %}
+    <div id="map" style="height: 400px;"></div>
+
+    <h2>Optimized Route</h2>
+    <p>Distance: {{ distance }}</p>
+    <p>Duration: {{ duration }}</p>
+
+    <h3>Optimized Waypoints:</h3>
+    <ul>
+        {% for leg in optimized_route %}
+            <li>{{ leg.start_address }} : {{ leg.end_address }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Geocoded Coordinates:</h3>
+    <ul>
+        {% for waypoint, coordinates in geocoded_coordinates.items %}
+            <li>{{ waypoint }} - Latitude: {{ coordinates.latitude }}, Longitude: {{ coordinates.longitude }}</li>
+        {% endfor %}
+    </ul>
+
+    <script>
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: {lat: 53.349805, lng: -6.26031}
+            });
+
+            var bounds = new google.maps.LatLngBounds();
+
+            // Loop through the optimized route data to create markers and a Polyline
+            var optimizedRouteCoordinates = [];
+            for(leg in optimized_route) {
+                var startLatLng = new google.maps.LatLng('{{ leg.start_location.lat }}','{{ leg.start_location.lng }}');
+                var endLatLng = new google.maps.LatLng('{{ leg.end_location.lat }}', '{{ leg.end_location.lng }}');
+
+                // Extend bounds with start and end points
+                bounds.extend(startLatLng);
+                bounds.extend(endLatLng);
+
+                // Create markers for start and end points
+                new google.maps.Marker({
+                    position: startLatLng,
+                    map: map,
+                    label: 'A'  // Customize as needed
+                });
+
+                new google.maps.Marker({
+                    position: endLatLng,
+                    map: map,
+                    label: 'B'  // Customize as needed
+                });
+
+                // Collect coordinates for Polyline
+                optimizedRouteCoordinates.push(startLatLng);
+                optimizedRouteCoordinates.push(endLatLng);
+        }
+
+            // Draw a Polyline on the map
+            var optimizedRoutePath = new google.maps.Polyline({
+                path: optimizedRouteCoordinates,
+                geodesic: true,
+                strokeColor: '#FF0000',
+                strokeOpacity: 1.0,
+                strokeWeight: 2
+            });
+
+            optimizedRoutePath.setMap(map);
+
+            // Fit the map to the bounds
+            map.fitBounds(bounds);
+        }
+    </script>
+</body>
+</html>

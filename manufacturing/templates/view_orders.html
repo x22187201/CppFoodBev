@@ -1,0 +1,55 @@
+<!-- view_orders.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Orders</title>
+    <!-- Include Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body class="blue lighten-5">
+    {% include 'admin_nav.html' %}
+    <div class="container">
+        <h2 class="center-align">Your Orders</h2>
+
+        {% if orders %}
+            <ul class="collapsible popout">
+                {% for order in orders %}
+                    <li>
+                        <div class="collapsible-header">
+                            Order Date: {{ order.order_date }} - User: {{ order.user.username }}
+                        </div>
+                        <div class="collapsible-body">
+                            <p>
+                                Delivery Address: {{ order.delivery_address }}<br>
+                                Pincode: {{ order.pincode }}<br>
+                                Total Price: ${{ order.total_price }}<br>
+                                Products:
+                            </p>
+                            <ul>
+                                {% for product in order.products.all %}
+                                    <li>{{ product.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="center-align">No orders found.</p>
+        {% endif %}
+    </div>
+
+    <!-- Include Materialize JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- Initialize Materialize components -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            M.AutoInit();
+        });
+    </script>
+</body>
+</html>

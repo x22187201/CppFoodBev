@@ -1,0 +1,15 @@
+<!-- admin_nav.html -->
+<style>
+    /* Add a style tag for custom CSS */
+    nav {
+        background-color: #34bbbd; /* Set the background color for the navbar */
+    }
+</style>
+<nav>
+    <div class="nav-wrapper">
+        <a href="{% url 'admin_dashboard' %}"  class="brand-logo">Admin Dashboard</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="{% url 'logout' %}" class="waves-effect waves-light btn red">Logout</a></li>
+        </ul>
+    </div>
+</nav>
