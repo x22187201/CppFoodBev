@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'manufacturing.apps.ManufacturingConfig',
+    'storages',
 
 
     
@@ -91,6 +92,52 @@ WSGI_APPLICATION = 'foodbev_manufacturing.wsgi.application'
 #         'PORT': '3306',           # Change to your MySQL server's port if not using the default
 #     }
 # }
+
+
+
+# Amazon S3 config
+
+AWS_ACCESS_KEY_ID = 'AKIAZ6SOQKXOFY2DSIUE'
+AWS_SECRET_ACCESS_KEY = '7Ghtj+yt5mR41dkfUK1wt3jGzczyE1xoqjkIbaqh'
+
+AWS_STORAGE_BUCKET_NAME = 'x22187201b1'
+AWS_S3_REGION_NAME = 'us-east-1'
+
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/' 
+
+# STORAGES = {
+
+#     'default':{
+#         "BACKEND" : "storages.backends.s3boto3.S3StaticStorage",
+#     },
+
+#     "staticfiles":{
+#         "BACKEND" : "storages.backends.s3boto3.S3StaticStorage"
+#     },
+
+# }
+
+# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+# AWS_S3_FILE_OVERWRITE = False
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 DATABASES = {
     'default': {
@@ -147,6 +194,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'static' 
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
