@@ -16,6 +16,7 @@ from django.core.exceptions import ImproperlyConfigured
 import boto3
 import json
 from botocore.exceptions import ClientError
+from .secrets import get_secret
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -98,13 +99,16 @@ WSGI_APPLICATION = 'foodbev_manufacturing.wsgi.application'
 # }
 
 
-#
+
+
+# AWS Secrets Manager secret name
+AWS_SECRETS = get_secret()
 
 
 # Amazon S3 config
 
-AWS_ACCESS_KEY_ID = 'AKIAVHKATRAHQVPNW6G5'
-AWS_SECRET_ACCESS_KEY ='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'
+AWS_ACCESS_KEY_ID = AWS_SECRETS['aws_key']
+AWS_SECRET_ACCESS_KEY = AWS_SECRETS['aws_secret']
 
 AWS_STORAGE_BUCKET_NAME = 'foodbevbucket'
 AWS_S3_REGION_NAME = 'us-east-1'
@@ -151,9 +155,9 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'keshavrds',
-        'USER': 'admin',
-        'PASSWORD': 'myrdsdatabase',
+        'NAME': AWS_SECRETS['db_name'],
+        'USER': AWS_SECRETS['db_username'],
+        'PASSWORD':AWS_SECRETS['db_password'],
         'HOST': 'x22187201fbmd.chwlezgyi7rm.eu-west-1.rds.amazonaws.com',  # RDS endpoint
         'PORT': '3306',  # Adjust the port based on your RDS configuration
         'OPTIONS':{

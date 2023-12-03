@@ -24,9 +24,9 @@ from django.http import HttpResponse
 sns = boto3.client(
     "sns",
     region_name="eu-west-1",  # Replace 'your_region' with your AWS region
-    aws_access_key_id="ASIATUYJP7SUJQ3SQ5XD",  # Replace 'your_access_key' with your AWS access key
-    aws_secret_access_key="PigCbQ+yx8olX5lZI2j+v64Y+FTKRIUNTYr9RS6M",  # Replace 'your_secret_key' with your AWS secret key
-    aws_session_token = "IQoJb3JpZ2luX2VjENL//////////wEaCXVzLWVhc3QtMSJHMEUCIQDbTq+fL7w7kwufL9f+L7iN28tMU1rF46Pwyo16PwjR7AIgTuDEGHiwUamSZ3QBsI3xzH6O8qGYj9ZCnHcmrdmNiyUq+wMIOhADGgwyNTA3Mzg2Mzc5OTIiDNHl22ApQIdsHND7LyrYAwoVS24cvr9XVhfbt5J7x2oySeAtiuBz8AEnzHxF7hE0tzYfyMxLAdoumyxzSK9/cpHsghoIGRyNsQMZ5IOfP/GKn8WSbNNLlVU9DAoaRAIy3NmQ5o2EUbcG8waeTICeaWKAHNJ7CoghidbAek5ROxTkyy9c92IWFcKdc99xp4n9+z/h5wbOmXnrdUnnE3Uc88um51k1kkttm6Xg9gSrXzWdDfoM7hNi6RTc9Jxt9KHo4qFGpOo7uhx9xGdgzKPF9Ky2hyBoN76u7Zz7L/rDbxrsPt4+IOvCtGc3J8LUGf0xRcCTeHGaX/B2KjFt0Bd3s/Rub+gB6FcuiraREojqZ4Hlnq6tz+1lWax6UrTpQ+XBjZAwauLdyM29MW0+iMJnGAW+54PeBgMxKfgvBJPbq3ZdaPFcsSNK5j8Xgy9Q64r9M0rwFm96G7kFG9vwbH30mbmp9kLBbqLN/721O2QJtQRdME7Hv+TssGBGRtlXf8TXW6bWi7dLQ1ooEPKv0K2aPcTrf16/2eYDLPFCx6OpFns6U7ODHbDHatJNTV0T/1kwdqvnGPPz7F0JOTIaulQyJ9FbLjOeg0oB3G8y2HzWVufNFWTNTW1/2AtWIShspEWIny/kbeiADsAw4K6vqwY6pgFrpue+8wS/5APE2gVMtaRktLH9zPRQGXPFkbK1DceCdkj9DR03Ed9ss8rcZAYxbeGgN8oX7tNUZKdPQilbSGkaBK1Yqgj03SAkuPZYp5pG97wcgjtFFTnzQzK7EYgIbDiLhIELSBSFqeKiOfM5IRtizIEL+DK9noV22/U7iIE6uc+7ckRgqPATh8xokZPlifx2c8FaE5OcNTC6vKgvsK2ZrWil1MJq"
+    aws_access_key_id="ASIATUYJP7SUOCO2FFR4",  # Replace 'your_access_key' with your AWS access key
+    aws_secret_access_key="hlcvxQ9SPtJW/xcbTjW61Brik3+VLiuhX0FX1lNG",  # Replace 'your_secret_key' with your AWS secret key
+    aws_session_token = "IQoJb3JpZ2luX2VjEN///////////wEaCXVzLWVhc3QtMSJHMEUCIFSqKPvN9nBC2NCBy358lL9R0LtzvtPV8AdmuvCUwI+MAiEAlQANT4/rwbFqtiTR3KrIyR7Frqkc+JtNmLL2nmhY8IUq+wMISBADGgwyNTA3Mzg2Mzc5OTIiDH5zY+lHJ4Klgz7r8irYA9KMWZKaHd2idFHO7avtSJyqUHx8bPTbAlRdb8xwOlJUrJ5+9uQFT/lxs5l11xzOMfFOiuttXP9Ch7ETnAO8BFAJTCFXBAOm03OWF+78a2HuOus7vOJ9aapQZGJFZbos5DHmZlliDQfnWogeCHdT9mgqk1BgzL/gUUkygUKeT/4Y2jh41RSWP4IMhtfeyzok+nW+wNhGOZVUjD4UMeFo48vXBXVut586ob9wunpcR9QZAvgmqKoBYG5ws7Lnu9hyV760u/UydO1a6/rpvV9evTh+ELBH6cipOvTISfMQ3343knTyEzrIBBkGZCv47c3u3CZaVbo/QqU+IBi+nwU9HjCfXY5HH5BjjK8eYzSi6HNWoG+f4SfKdm/ALXoO5i0DMDRjDXhy3nEcteksS2MfCHkwZKO+a+idsO8Y9rhrdqqgp9LhwinIfImsIjFbduE1DUACHD7X/lQLE6DcSF5PXFCfdRqT97OlR9QxKyd9DlYf7jnHW6rkDZrJRPkdq1UmmIBDhRCfu/0YnYxmqFwTsVWX8puYo5xG+Le9jTfAG2SKZIisLnkWjDSy4Vnp2SLkItIh1Wh/8Uaytove7kt7Ebm5l+wuSaxZspZCRpZDDtiFfSxxfiSgwHwwoaeyqwY6pgE9I/Sw6Edsd2wVAgRHldmGupMZpYJ+K9kHRQtXWsy6Lg9ku/ABGMUfugTZuvYRL/oVmDqALTvKDphs6+Dfeq3wXM0snxEcylPk8zIeTOecgiFBxOchmPSLNIrjwlA8lGE6/fTKDib60SxD1fK5oYkxNsaUzcmGDUrf6sMDnRoRQexXTvrL1pUK8zQq+1EfJWn8eB1nGT+GU07uQD0X9DEsBWEQGGE2"
     )
     
 SNS_TOPIC_ARN = "arn:aws:sns:eu-west-1:250738637992:x22187201Register"
@@ -423,6 +423,7 @@ def optimized_route_view(request, user_id=None):
 
     print(context)
     return render(request, 'optimized_route.html', {'optimized_route': context})
+
 
 
 
