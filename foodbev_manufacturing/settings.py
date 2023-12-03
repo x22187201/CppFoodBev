@@ -97,10 +97,10 @@ WSGI_APPLICATION = 'foodbev_manufacturing.wsgi.application'
 
 # Amazon S3 config
 
-AWS_ACCESS_KEY_ID = 'AKIAZ6SOQKXOFY2DSIUE'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = 'AKIAVHKATRAHQVPNW6G5'
+AWS_SECRET_ACCESS_KEY = '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'
 
-AWS_STORAGE_BUCKET_NAME = 'x22187201b1'
+AWS_STORAGE_BUCKET_NAME = 'foodbevbucket'
 AWS_S3_REGION_NAME = 'us-east-1'
 
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
@@ -109,6 +109,7 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 #MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/' 
+
 
 # STORAGES = {
 
