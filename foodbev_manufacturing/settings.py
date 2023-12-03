@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+from django.core.exceptions import ImproperlyConfigured
+import boto3
+import json
+from botocore.exceptions import ClientError
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -94,11 +98,13 @@ WSGI_APPLICATION = 'foodbev_manufacturing.wsgi.application'
 # }
 
 
+#
+
 
 # Amazon S3 config
 
 AWS_ACCESS_KEY_ID = 'AKIAVHKATRAHQVPNW6G5'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_SECRET_ACCESS_KEY ='GnaRGCaBmSHTsyhKHq/jtUbBivVAENpFzwMWKh/+'
 
 AWS_STORAGE_BUCKET_NAME = 'foodbevbucket'
 AWS_S3_REGION_NAME = 'us-east-1'
@@ -125,6 +131,8 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 # AWS_S3_FILE_OVERWRITE = False
+
+
 
 
 
