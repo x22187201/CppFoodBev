@@ -26,7 +26,6 @@ def get_secret():
 
         if secret_string:
             secret = json.loads(secret_string)
-            print(secret)
             return secret
         else:
             raise ImproperlyConfigured(f"Secret '{secret_name}' does not contain a 'SecretString'.")
